@@ -3,8 +3,8 @@ import os
 import keyboard
 
 
-Hight=30 #480
-Width=100 #640
+Hight=480
+Width=640
 display_matrix = [[0 for x in range(Width)] for y in range(Hight)]
 paddlesize = 5 #int(50)
 paddle1pos = [int((Hight+paddlesize)/2),int(5)]
