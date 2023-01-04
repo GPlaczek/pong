@@ -1,0 +1,4 @@
+sudo docker build --network host -t pong .
+sudo docker run -it --rm -v /home/pawelm/Dokumenty/Systemy\ wbudowane/pico_code/pong:/pong pong bash
+cmake -S . -B build
+(cd build && make)

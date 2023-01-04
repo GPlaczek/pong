@@ -179,7 +179,7 @@ int main() {
         for (i=0; i<640; i++) {
             for (j=0; j<480; j++) {
                 if ((i >= 20 && i <= 60) && (j > a && j < a + 120) ||
-                     (i >= 580 && i < 620) && (j > b && j < b + 120)) {
+                    (i >= 580 && i < 620) && (j > b && j < b + 120)) {
                     drawPixel(i, j, color);
                 } else {
                     drawPixel(i, j, BLACK);
