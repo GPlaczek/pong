@@ -34,10 +34,10 @@ def reset():
     global paddle2pos
     global ballpos
     global ballvec
-    paddle1pos = int((Hight)/2)
-    paddle2pos = int((Hight)/2)
+    # paddle1pos = int((Hight)/2)
+    # paddle2pos = int((Hight)/2)
     ballpos = [Width/2,Hight/2]
-    ballvec = [10.0,10.0]
+    ballvec = [ballvec[0]*-1,10.0]
 def update_ball():
     global ballpos
     global ballvec
@@ -48,14 +48,14 @@ def update_ball():
         reset()
     elif y<0 or y>Hight-ballsize:
         ballvec[1]*=-1
-    elif ballpos[0]<=60 and y>paddle1pos-ballsize and y<paddle1pos+120:
-        ballvec[0]*=-1
+    elif ballpos[0]<=60 and ballpos[1]>paddle1pos-ballsize and ballpos[1]<paddle1pos+120:
+        ballvec[0]=10
         c= ballvec[1]
         ballvec[1] = (ballpos[1]-paddle1pos)/(paddlesize/2)*10
         if int(round(ballvec[1]))==0:
             ballvec[1] = c
-    elif ballpos[0]>=580-ballsize and y>paddle2pos-ballsize and y<paddle2pos+120:
-        ballvec[0]*=-1
+    elif ballpos[0]>=580-ballsize and ballpos[1]>paddle2pos-ballsize and ballpos[1]<paddle2pos+120:
+        ballvec[0]=-10
         c= ballvec[1]
         ballvec[1] = (ballpos[1]-paddle2pos)/(paddlesize/2)*10
         if int(round(ballvec[1]))==0:
@@ -76,33 +76,33 @@ def distance(echo, trigger):
         StartTime = time.time()
         i+=1
         if i > 1000:
-            return -1;
+            return -1
 
     i = 0
     while GPIO.input(echo) == 1:
         StopTime = time.time()
         i+=1
         if i > 1000:
-            return -1;
+            return -1
 
     return ((StopTime - StartTime) * 34300) / 2
 def move_paddle1(pos):
     global paddle1pos
     if pos<15:
         if paddle1pos > 0:
-            paddle1pos -= 20
+            paddle1pos -= 10
     elif pos>25:
         if paddle1pos < Hight-paddlesize:
-            paddle1pos += 20
+            paddle1pos += 10
 
 def move_paddle2(pos):
     global paddle2pos
     if pos<15:
         if paddle2pos > 0:
-            paddle2pos -= 20
+            paddle2pos -= 10
     elif pos>25:
         if paddle2pos < Hight-paddlesize:
-            paddle2pos += 20
+            paddle2pos += 10
 
 if __name__ == '__main__':
     ser = serial.Serial(
@@ -130,7 +130,7 @@ if __name__ == '__main__':
             move_paddle1(dist1)
             move_paddle2(dist2)
             print(score)
-            ser.write(bytearray("{} {} {} {}\n".format(int(paddle2pos), int(paddle1pos),int(ballpos[0]),int(ballpos[1])), "utf-8"))
+            ser.write(bytearray("{} {} {} {}\n".format(int(paddle1pos), int(paddle2pos),int(ballpos[0]),int(ballpos[1])), "utf-8"))
             _ = ser.readline()
             # print(dist1, dist2)
             # ser.write(bytearray("{} {} 1\n".format(int(dist1), int(dist2)), "utf-8"))
