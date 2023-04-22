@@ -172,21 +172,75 @@ int main() {
 
     uint64_t begin_time ;
     uint64_t end_time ;
-    int a=0, b=0, c=0;
+    int a=0, b=0, c=0,d=0;
+    
+    int oa=0, ob=0, oc=0, od=0;
     while (true) {
-        scanf("%d %d %d", &a, &b, &c);
+        scanf("%d %d %d %d\n", &a, &b, &c, &d);
         printf("\n");
+        
+        /*
+        if(a!=oa){
+            for (i=20; i<=60; i++) {
+                for (j=oa; j<oa+120; j++) {
+                    drawPixel(i, j, BLACK);
+                }
+            }
+            for (i=20; i<=60; i++) {
+                for (j=a; j<a+120; j++) {
+                    drawPixel(i, j, BLUE);
+                }
+            }
+        }
+
+        if(b!=ob){}
+            for (i=580; i<=620; i++) {
+                for (j=ob; j<ob+120; j++) {
+                    drawPixel(i, j, BLACK);
+                }
+            }
+            for (i=580; i<=620; i++) {
+                for (j=b; j<b+120; j++) {
+                    drawPixel(i, j, RED);
+                }
+            }
+        }
+
+
+        for (i=oc; i<=oc+40; i++) {
+            for (j=od; j<od+40; j++) {
+                drawPixel(i, j, BLACK);
+            }
+        }
+        for (i=c; i<=c+40; i++) {
+            for (j=d; j<d+40; j++) {
+                drawPixel(i, j, WHITE);
+            }
+        }
+    */
+
+
+        
         for (i=0; i<640; i++) {
             for (j=0; j<480; j++) {
-                if ((i >= 20 && i <= 60) && (j > a && j < a + 120) ||
-                     (i >= 580 && i < 620) && (j > b && j < b + 120)) {
-                    drawPixel(i, j, color);
-                } else {
+                if ((i >= 20 && i <= 60) && (j > a && j < a + 120)){
+                    drawPixel(i, j, BLUE);
+                }
+                else if((i >= 580 && i <= 620) && (j > b && j < b + 120)) {
+                    drawPixel(i, j, RED);
+                } 
+                else if ( (i>=c && i<=c+40) && (j>=d && j<d+40) ) {
+                    drawPixel(i, j, WHITE);
+                }
+                else {
                     drawPixel(i, j, BLACK);
                 }
             }
         }
-        a++;
-        if (a > 40) { a = 20; }
+        
+        //oa=a; ob=b; oc=c; od=d;
+
+        // a++;
+        // if (a > 40) { a = 20; }
     }
 }
