@@ -18,20 +18,20 @@
         jest sczytywanie odległości z dwóch czujników, obliczanie pozycji piłki na planszy (i całej
         logiki gry), serializacja tych danych i wysyłanie ich w pętli na łącze szeregowe do
         raspberry pico..</p>
-    <p><a href="https://youtu.be/qyTAEGXcaLA" target="_new">Obejrzyj film demonstracyjny</a></p>
+    <p><a href="https://youtu.be/qyTAEGXcaLA" target="_new">Obejrzyj film demonstracyjny</a></p> 
+    <p><a href="https://github.com/GPlaczek/pong/blob/master/Sprawozdanie.pdf" target="_new">Plik zawierający opis projektu oraz schematy</a></p>
     <h2>Instalacja</h2>
     <p>Do zbudowania projektu na użyliśmy Dockera</p>
     <p>Budowa obrazu kontenera:</p>
-    <pre>cd docker
+    <pre>    	cd docker
         sudo docker build --network host -t pong .</pre>
     <p>Uruchomienienie kontenera (z folderu głownego projektu)<p>
-    <pre>cd ..
+    <pre>    	cd ..
         sudo docker run -it .:/pong pong bash</pre>
     <p>Kompilacja projekt (z poziomu kontenera) </p>
-    <pre>cd pong
+    <pre>    	cd pong
         cmake -S . -B build
-        (cd build && make)
-    </pre>
+        (cd build && make)</pre>
     <h2>Użycie</h2>
     <p>Plik wykonywalny pong.elf znajduje się w folderze build. Skopiuj go na Raspberry Pico </p>
 </div>
